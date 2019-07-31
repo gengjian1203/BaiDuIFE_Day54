@@ -2,7 +2,7 @@
 ## 第五十四天到第五十七天：足球小将（一）
 
 ### 作品展示
-展示链接 [[点击进入]](https://gengjian1203.github.io/BaiDuIFE_Day25/)  
+展示链接 [[点击进入]](https://gengjian1203.github.io/BaiDuIFE_Day54/)  
 ![Result](readme/result1.png "作品展示Day54")
 
 ### 课程目标  
@@ -105,3 +105,4 @@ Firefox (67.0.4)
 
 ### 相关链接
 [百度前端技术学院-第五十四天到第五十七天：足球小将（一）](http://ife.baidu.com/course/detail/id/62)  
+[百度前端技术学院-第五十八天到第六十二天：足球小将（二）](http://ife.baidu.com/course/detail/id/63)  

@@ -14,7 +14,7 @@ var Global = function() {
     var m_fScale;
 
     // 基本时间
-    var m_nBaseTime = 30;
+    var m_nBaseTime = 60;
 
     this.show = function() {
         console.log("ddd");
