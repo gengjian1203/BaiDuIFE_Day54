@@ -3,24 +3,46 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/main.css" type="text/css">
-        <title>
-
-        </title>
+        <title>足球小将</title>
     </head>
 
     <body>
         <div id="bg">
             <canvas id="footballfield"></canvas>
         </div>
+
         <div id="control">
-            <button id="start">开始</button>
-            <button id="stop">停止</button>
+            <div id="player">
+                运动员控制面板
+                <button id="player_start">开始</button>
+                <button id="player_stop">停止</button>    
+            </div>
+            <div id="football">
+                足球控制面板
+                <button id="football_start">开始</button>
+                <button id="football_stop">停止</button>
+            </div>
+
+            <button id="test">测试</button>
+        </div>
+        
+        <div id="state">
+            <div id="red">
+                <h2>红队状况</h2>
+                <div id="red_score">得分情况：0</div>
+
+            </div>
+            <div id="blue">
+                <h2>蓝队状况</h2>
+                <div id="blue_score">得分情况：0</div>
+            </div>
         </div>
     </body>
 
     <!-- js -->
-    <script src="js/Global.js"></script>
-    <script src="js/Player.js"></script>
-    <script src="js/Footballfield.js"></script>
-    <script src="js/main.js"></script>
+    <script type="text/javascript" src="js/Global.js"></script>
+    <script type="text/javascript" src="js/Football.js"></script>
+    <script type="text/javascript" src="js/Player.js"></script>
+    <script type="text/javascript" src="js/Footballfield.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 </html>

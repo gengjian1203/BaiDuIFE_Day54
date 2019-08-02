@@ -1,8 +1,57 @@
+html, body, div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, table, tr, td {
+    margin: 0px;
+    padding: 0px;
+}
+
 #bg {
     width: 800px;
-    height: 530px;
+    height: 525px;
 
-    /* border: 1px solid #000000; */
+    border: 1px solid #000000;
+
+    margin: 5px auto;
+}
+
+
+#state {
+    width: 800px;
+    height: 200px;
+
+    margin: 2px auto;
+
+    border: 1px solid #000000;
+
+}
+
+#state #red {
+    float: left;
+    width: 388px;
+    height: 188px;
+
+    margin: 5px;
+    border: 1px solid #000000;
+}
+
+#state #blue {
+    float: right;
+    width: 388px;
+    height: 188px;
+
+    margin: 5px;
+    border: 1px solid #000000;
+}
+
+h2 {
+    font-size: 0.5em;
+    font-weight: 400;
+    text-align: center;
+}
+
+#control {
+    width: 800px;
+    height: 100px;
 
     margin: 0px auto;
+
+    border: 1px solid #000000;
 }
