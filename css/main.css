@@ -3,55 +3,139 @@ html, body, div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, table, tr, td {
     padding: 0px;
 }
 
-#bg {
-    width: 800px;
-    height: 525px;
-
-    border: 1px solid #000000;
-
-    margin: 5px auto;
+button {
+    margin: 0px;
+    padding: 1px 1px;
 }
 
+#main {
+    width: 100%;
+    height: 530px;
+    display: flex;
 
-#state {
-    width: 800px;
-    height: 200px;
-
-    margin: 2px auto;
-
-    border: 1px solid #000000;
-
+    margin: 2px 0px;
 }
 
-#state #red {
-    float: left;
-    width: 388px;
-    height: 188px;
-
-    margin: 5px;
-    border: 1px solid #000000;
-}
-
-#state #blue {
-    float: right;
-    width: 388px;
-    height: 188px;
-
-    margin: 5px;
-    border: 1px solid #000000;
-}
-
-h2 {
-    font-size: 0.5em;
+#main h3 {
+    /* font-size: 1em; */
     font-weight: 400;
     text-align: center;
+    border-bottom: 1px solid #000000;
 }
 
-#control {
-    width: 800px;
-    height: 100px;
+#main p {
+    float: left;
+}
 
-    margin: 0px auto;
+#main input {
+    float: left;
+
+    width: 40px;
+    margin-top: 2px;
+}
+
+#main img {
+    float: left;
+
+    width: 12px;
+    height: 12px;
+
+    margin: 4px 10px;
+}
+
+#main .attribute {
+    width: 100%;
+    height: 25px;
+}
+
+#main #red {
+    flex: 1 1 auto;
+    height: calc(100% - 12px);
+
+    border: 4px solid red;
+    border-radius: 10px;
+
+    margin: 0px 5px;
+}
+
+#main #red #red_add {
+    padding: 5px;
+
+    border-bottom: 1px solid #000000;
+}
+
+#main #red #red_team {
+    padding: 5px;
+}
+
+#main #bg {
+    flex: 0 0x auto;
+    width: 800px;
+    height: calc(100% - 2px);
+
+    /* border: 1px solid #000000; */
+}
+
+#main #blue {
+    flex: 1 1 auto;
+    height: calc(100% - 12px);
+
+    border: 4px solid blue;
+    border-radius: 10px;
+    margin: 0px 5px;
+}
+
+#main #blue #blue_add {
+    padding: 5px;
+}
+
+#main #blue #blue_team {
+    padding: 5px;
+}
+
+#less {
+    display: flex;
+
+    width: calc(100% - 12px);
+    height: 160px;
 
     border: 1px solid #000000;
+
+    margin: 0px 5px;
+}
+
+#less #control {
+    flex: 1;
+    height: calc(100% - 10px);
+
+    border: 1px solid #000000;
+
+    margin: 2px;
+}
+
+#less #log {
+    flex: 1;
+    height:  calc(100% - 10px);
+
+    border: 1px solid #000000;
+    text-align: center;
+
+    margin: 2px;
+}
+
+#less #log #log_text {
+    border: 1px solid black;
+    width: calc(100% - 10px);
+    height: calc(100% - 30px);
+    overflow: scroll;
+    text-align: left;
+    font-size: 0.8em;
+    font-family: 'Courier New', Courier, monospace;
+
+    margin: auto auto;
+}
+
+#less #log h4 {
+    font-weight: 400;
+
 }

@@ -43,6 +43,10 @@ function Player(x, y, num) {
     var nKeep = Math.floor(Math.random() * 98) + 1;
     // 能保持最大速度时间（毫秒）
     var fKeepTime = ((5 / 98) * nKeep + (975 / 98)) * 1000;
+    // 力量
+    var nStrong = Math.floor(Math.random() * 98) + 1;
+    // 技巧
+    var nSkill = Math.floor(Math.random() * 98) + 1;
     // 运动员奔跑方向
     var direction = (2 * Math.PI / 360) * 0;
 

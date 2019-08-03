@@ -8,11 +8,14 @@ arrPlayer.push(new Player(10, 10, 1));
 arrPlayer.push(new Player(10, 120, 2));
 arrPlayer.push(new Player(10, 240, 3));
 arrPlayer.push(new Player(10, 360, 4));
+
+
 // 主函数
 window.onload = function() {
     // 控件属性初始化
     document.getElementById("player_stop").disabled = "disabled";
     document.getElementById("football_stop").disabled = "disabled";
+    Global.getInstance().MyLog("欢迎来到“足球小将”");
 
     // 绘制足球场
     fbField.show();
@@ -24,7 +27,12 @@ window.onload = function() {
     Football.getInstance().setPosition(300, 10);
     Football.getInstance().show();
 
-    // 事件绑定
+    // 红队面板事件绑定
+
+    // 蓝队面板事件绑定
+
+    
+    // 控制面板事件绑定
     var objDiv = document.getElementById("control");
     objDiv.onclick = function(e) {
         var ev = e || window.event;
@@ -65,16 +73,7 @@ window.onload = function() {
                     Football.getInstance().stop();
                     break;
                 case "test":
-                    var dir = Math.atan2(40-(330-200), 340-(50+200));
-                    var direction = dir * 180 / Math.PI;
-                    var dir2 = direction * Math.PI * 2 / 360;
-                    nX = 300 * Math.cos(dir2);
-                    nY = 300 * Math.sin(dir2);        
-                    console.log(dir);
-                    console.log(direction);
-                    console.log(dir2);
-                    console.log(nX);
-                    console.log(nY);
+                    Global.getInstance().MyLog("123123123aabbc");
                     break;
                 default:
                     break;
@@ -83,8 +82,7 @@ window.onload = function() {
     }
 
     // 定时器
-    setInterval(update, Global.getInstance().getBaseTime());
-    // setInterval(updateDiv, 10 * Global.getInstance().getBaseTime());            
+    setInterval(update, Global.getInstance().getBaseTime());        
 }
 
 
@@ -99,10 +97,4 @@ function update() {
     // 绘制足球
     Football.getInstance().update();
     Football.getInstance().show();
-}
-
-function  updateDiv() {
-    for(var index in arrPlayer) {
-        arrPlayer[index].setDirection();
-    }
 }

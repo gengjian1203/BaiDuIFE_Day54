@@ -7,36 +7,142 @@
     </head>
 
     <body>
-        <div id="bg">
-            <canvas id="footballfield"></canvas>
-        </div>
-
-        <div id="control">
-            <div id="player">
-                运动员控制面板
-                <button id="player_start">开始</button>
-                <button id="player_stop">停止</button>    
-            </div>
-            <div id="football">
-                足球控制面板
-                <button id="football_start">开始</button>
-                <button id="football_stop">停止</button>
-            </div>
-
-            <button id="test">测试</button>
-        </div>
-        
-        <div id="state">
+        <div id="main">
             <div id="red">
-                <h2>红队状况</h2>
-                <div id="red_score">得分情况：0</div>
+                <h3>红队状况 比分：0</h3>
+                <div id="red_add">
+                    增加队员：
+                    <div name="nID" class="attribute">
+                        <p>编码：</p>
+                        <input type="text" id="red_nID" />
+                        <img src="img/BeCareful.png" atl="注意"/>
+                    </div>
+                    <div name="nVNum" class="attribute">
+                        <p>速度：</p>
+                        <input type="text" id="red_nVNum" />
+                        <img src="img/BeCareful.png" atl="注意"/>
+                    </div>
+                    <div name="nPower" class="attribute">
+                        <p>爆发：</p>
+                        <input type="text" id="red_nPower" />
+                        <img src="img/BeCareful.png" atl="注意"/>
+                    </div>
+                    <div name="nKeep" class="attribute">
+                        <p>体力：</p>
+                        <input type="text" id="red_nKeep" />
+                        <img src="img/BeCareful.png" atl="注意"/>
+                    </div>
+                    <div name="nStrong" class="attribute">
+                        <p>力量：</p>
+                        <input type="text" id="red_nStrong" />
+                        <img src="img/BeCareful.png" atl="注意"/>
+                    </div>
+                    <div name="nSkill" class="attribute">
+                        <p>技巧：</p>
+                        <input type="text" id="red_nSkill" />
+                        <img src="img/BeCareful.png" atl="注意"/>
+                    </div>
+                    <button id="red_roll">随机属性</button>
+                    <button id="red_sure">增加队员</button>
+                    <button id="red_delete">删除队员</button>
+                </div>
+                <div id="red_team">
+                    队伍成员：
+                    <div id="red_players">
 
+                    </div>
+                    <div id="red_show">
+                        <div name="nID" class="attribute">编码：</div>
+                        <div name="nVNum" class="attribute">速度：</div>
+                        <div name="nPower" class="attribute">爆发：</div>
+                        <div name="nKeep" class="attribute">体力：</div>
+                        <div name="nStrong" class="attribute">力量：</div>
+                        <div name="nSkill" class="attribute">技巧：</div>
+                        <div name="nVNum" class="attribute">当前速度：0m/s</div>
+                    </div>
+                </div>
+            </div>
+            <div id="bg">
+                <canvas id="footballfield"></canvas>
             </div>
             <div id="blue">
-                <h2>蓝队状况</h2>
-                <div id="blue_score">得分情况：0</div>
+                <h3>蓝队状况 比分：0</h3>
+                <div id="blue_add">
+                    增加队员：
+                    <div name="nID" class="attribute">
+                        <p>编码：</p>
+                        <input type="text" id="blue_nID" />
+                        <img src="img/BeCareful.png" atl="注意"/>
+                    </div>
+                    <div name="nVNum" class="attribute">
+                        <p>速度：</p>
+                        <input type="text" id="blue_nVNum" />
+                        <img src="img/BeCareful.png" atl="注意"/>
+                    </div>
+                    <div name="nPower" class="attribute">
+                        <p>爆发：</p>
+                        <input type="text" id="blue_nPower" />
+                        <img src="img/BeCareful.png" atl="注意"/>
+                    </div>
+                    <div name="nKeep" class="attribute">
+                        <p>体力：</p>
+                        <input type="text" id="blue_nKeep" />
+                        <img src="img/BeCareful.png" atl="注意"/>
+                    </div>
+                    <div name="nStrong" class="attribute">
+                        <p>力量：</p>
+                        <input type="text" id="blue_nStrong" />
+                        <img src="img/BeCareful.png" atl="注意"/>
+                    </div>
+                    <div name="nSkill" class="attribute">
+                        <p>技巧：</p>
+                        <input type="text" id="blue_nSkill" />
+                        <img src="img/BeCareful.png" atl="注意"/>
+                    </div>
+                    <button id="blue_roll">随机属性</button>
+                    <button id="blue_sure">增加队员</button>
+                    <button id="blue_delete">删除队员</button>
+                </div>
+                <div id="blue_team">
+                    队伍成员：
+                    <div id="blue_players">
+
+                    </div>
+                    <div id="blue_show">
+                        <div name="nID" class="attribute">编码：</div>
+                        <div name="nVNum" class="attribute">速度：</div>
+                        <div name="nPower" class="attribute">爆发：</div>
+                        <div name="nKeep" class="attribute">体力：</div>
+                        <div name="nStrong" class="attribute">力量：</div>
+                        <div name="nSkill" class="attribute">技巧：</div>
+                        <div name="nVNum" class="attribute">当前速度：0m/s</div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div id="less">
+            <div id="control">
+                <div id="player">
+                    运动员控制面板<br>
+                    <button id="player_start">开始</button>
+                    <button id="player_stop">停止</button>    
+                </div>
+                <div id="football">
+                    足球控制面板<br>
+                    <button id="football_start">开始</button>
+                    <button id="football_stop">停止</button>
+                </div>
+    
+                <button id="test">测试</button>
+            </div>
+            <div id="log">
+                <h4>赛事简报</h4>
+                <div id="log_text"></div>
+            </div>
+        </div>
+        
+        
     </body>
 
     <!-- js -->

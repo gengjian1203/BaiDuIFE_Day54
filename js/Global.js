@@ -85,6 +85,41 @@ var Global = function() {
     this.getBaseTime = function() {
         return m_nBaseTime;
     }
+
+    // 
+    this.MyLog = function(strLog) {
+        var div = document.getElementById("log_text");
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth();
+        var day = now.getDate();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        // 补零空位
+        if (month < 10) {
+            month = "0" + month;
+        }
+        if (day < 10) {
+            day = "0" + day;
+        }
+        if (hour < 10) {
+            hour = "0" + hour;
+        }
+        if (minute < 10) {
+            minute = "0" + minute;
+        }
+        if (second < 10) {
+            second = "0" + second;
+        }
+
+        div.innerHTML = div.innerHTML + "【" + 
+                        year + "-" + month + "-" + day + " " + 
+                        hour + ":" + minute + ":" + second + 
+                        "】 " + strLog + "<br>";
+
+        div.scrollTop = div.scrollHeight;
+    }
 }
 
 Global.getInstance = function() {

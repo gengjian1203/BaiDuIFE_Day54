@@ -148,6 +148,22 @@ function FootballField(X, Y) {
         ctx.beginPath();
         ctx.arc(nStartX + nWidth - (11 * fScale), nStartY + (nHeight / 2), 2, 0, 2 * Math.PI);
         ctx.fill();
+
+        // 长度 数值
+        ctx.fillText(X + "m", nStartX + (nWidth / 2) - 10, nStartY - 10);
+        ctx.fillText(X + "m", nStartX + (nWidth / 2) - 10, nStartY + nHeight + 17);
+        // 宽度 数值
+        ctx.save();
+        ctx.translate(nStartX - 20, nStartY + (nHeight / 2) + 10);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText(Y + "m", 0, 0);
+        ctx.restore();
+        ctx.save();
+        ctx.translate(nStartX + nWidth + 20, nStartY + (nHeight / 2) - 10);
+        ctx.rotate(Math.PI / 2);
+        ctx.fillText(Y + "m", 0, 0);
+        ctx.restore();
+        
     }
     
     ////////////////////////////////////////////////////////////////////////////////
