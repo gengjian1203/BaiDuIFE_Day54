@@ -1,6 +1,14 @@
 html, body, div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, table, tr, td {
     margin: 0px;
     padding: 0px;
+
+    font-size: 14px;
+}
+
+h3, h4 {
+    font-weight: 800;
+    text-align: center;
+    /* border-bottom: 1px solid #000000;     */
 }
 
 button {
@@ -16,13 +24,6 @@ button {
     margin: 2px 0px;
 }
 
-#main h3 {
-    /* font-size: 1em; */
-    font-weight: 400;
-    text-align: center;
-    border-bottom: 1px solid #000000;
-}
-
 #main p {
     float: left;
 }
@@ -31,7 +32,8 @@ button {
     float: left;
 
     width: 40px;
-    margin-top: 2px;
+    height: 12px;
+    margin-top: 1px;
 }
 
 #main img {
@@ -59,13 +61,27 @@ button {
 }
 
 #main #red #red_add {
+    width: 90%;
+
+    margin: 0px auto;
     padding: 5px;
 
+
+    border-top: 1px solid #000000;
     border-bottom: 1px solid #000000;
 }
 
 #main #red #red_team {
+    width: 90%;
+
+    margin: 0px auto;
     padding: 5px;
+}
+
+#main #red #red_team #red_players {
+    padding: 5px;
+
+    border: 1px solid #000000;
 }
 
 #main #bg {
@@ -86,11 +102,27 @@ button {
 }
 
 #main #blue #blue_add {
+    width: 90%;
+
+    margin: 0px auto;
     padding: 5px;
+
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
 }
 
 #main #blue #blue_team {
+    width: 90%;
+
+    margin: 0px auto;
     padding: 5px;
+    
+}
+
+#main #blue #blue_team #blue_players {
+    padding: 5px;
+
+    border: 1px solid #000000;
 }
 
 #less {
@@ -129,13 +161,45 @@ button {
     height: calc(100% - 30px);
     overflow: scroll;
     text-align: left;
-    font-size: 0.8em;
+    /* font-size: 0.8em; */
     font-family: 'Courier New', Courier, monospace;
 
     margin: auto auto;
 }
 
-#less #log h4 {
-    font-weight: 400;
+#frame_becareful {
+    display: none;
+
+    width: 200px;
+    height: 90px;
+
+    position: absolute;
+    padding: 5px;
+
+    background: gray;
+
+    color: white;
+    border: 4px double #000000;
+    border-radius: 5px;
+
+    opacity: 0.9;
+}
+
+#frame_becareful #frame_becareful_data1 {
+    width: 90%;
+    
+    font-size: 12px;
+    margin: 5px auto;
+    padding-top: 5px;
+    text-align: center;
+    border-top: 1px solid white;
+}
+
+#frame_becareful #frame_becareful_data2 {
+    width: 90%;
+
+    font-size: 12px;
+    margin: 5px auto;
+    text-align: center;
 
 }

@@ -10,6 +10,13 @@ var Global = function() {
     var m_nWidth = 0;
     var m_nHeight = 0;
 
+    // 球员入场位置
+    // [[红队起始点比例, 红队可偏移比例], [蓝队起始点比例, 蓝队可偏移比例]]
+    var m_arrAdmissionX = [[0.05, 0.35],[0.6, 0.35]];
+    var m_arrAdmissionY = [[0.1, 0.8],[0.1, 0.8]];
+    // 球员颜色
+    var m_clrTeam = ["red", "blue"];
+
     // 像素 / 米 的比值
     var m_fScale;
 
@@ -66,9 +73,24 @@ var Global = function() {
         m_nHeight = nHeight;
     }
 
-    // 设置足球场宽度
+    // 获取足球场宽度
     this.getHeight = function() {
         return m_nHeight;
+    }
+
+    // 获取球员入场位置X数组（百分比）
+    this.getAdmissionX = function() {
+        return m_arrAdmissionX;
+    }
+
+    // 获取球员入场位置Y数组（百分比）
+    this.getAdmissionY = function() {
+        return m_arrAdmissionY;
+    }
+
+    // 获取球队颜色
+    this.getTeamColor = function() {
+        return m_clrTeam;
     }
 
     // 设置比例值

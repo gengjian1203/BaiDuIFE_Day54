@@ -1,22 +1,49 @@
 ////////////////////////////////////////////////////////////////////////////////
+// 工厂类
+////////////////////////////////////////////////////////////////////////////////
+var PlayerFactory = function() { };
+
+PlayerFactory.prototype = {
+    signing : function (strMode, arrAttribute) {
+        var player;
+        switch (strMode) {
+            case "red":
+                player = new Player(0, arrAttribute);
+                
+                break;
+            case "blue":
+                player = new Player(1, arrAttribute);
+        
+            default:
+                break;
+        }
+        return player;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
 // 运动员类
 ////////////////////////////////////////////////////////////////////////////////
 
-function Player(x, y, num) {
+function Player(nTeam, arrAttribute) {
     // private:
+    // 全局单例
+    var m_global = Global.getInstance();
     // 运动员当前位置
     var nX = 0;
     var nY = 0;
-    // 运动员起始位置
+    // 运动员起始位置（在自己半场内随机位置）
+    var x = m_global.getWidth() * m_global.getAdmissionX()[nTeam][0] + Math.floor(Math.random() * (m_global.getWidth() * m_global.getAdmissionX()[nTeam][1]));
+    var y = m_global.getHeight() * m_global.getAdmissionY()[nTeam][0] + Math.floor(Math.random() * (m_global.getHeight() * m_global.getAdmissionY()[nTeam][1]));
     var nSetX = Global.getInstance().getStartX() + x;
     var nSetY = Global.getInstance().getStartY() + y;
     // 运动员编号
-    var strNum = num;
+    var nNum = arrAttribute[0];
     // 运动员队伍颜色
     var clrCircle = "white";
-    var clrFill = "red";
+    var clrFill = m_global.getTeamColor()[nTeam];
     var clrText = "white";
-    var styleText = "14px bold 黑体";
+    var styleText = "13px bold 黑体";
     // 运动员跑步状态
     var bGo = false;
     // 按下停止的即时速度，用于计算惯性减速距离
@@ -30,23 +57,23 @@ function Player(x, y, num) {
 
     // 运动员属性
     // 速度属性 (1 - 99)
-    var nVNum = Math.floor(Math.random() * 98) + 1;
+    var nVNum = arrAttribute[1];//Math.floor(Math.random() * 98) + 1;
     // 即时速度
     var fVNow = 0;
     // 最大速度 (0.003m/ms - 0.012m/ms)
     var fVMax = (3 + (nVNum - 1) * (8 / 98)) / 1000;
     // 爆发力属性
-    var nPower = Math.floor(Math.random() * 98) + 1;
+    var nPower = arrAttribute[2];//Math.floor(Math.random() * 98) + 1;
     // 达到最大速度时间（毫秒）
     var fPowerTime = ((-3 / 98) * nPower + (395 / 98)) * 1000;
     // 体力属性
-    var nKeep = Math.floor(Math.random() * 98) + 1;
+    var nKeep = arrAttribute[3];//Math.floor(Math.random() * 98) + 1;
     // 能保持最大速度时间（毫秒）
     var fKeepTime = ((5 / 98) * nKeep + (975 / 98)) * 1000;
     // 力量
-    var nStrong = Math.floor(Math.random() * 98) + 1;
+    var nStrong = arrAttribute[4];//Math.floor(Math.random() * 98) + 1;
     // 技巧
-    var nSkill = Math.floor(Math.random() * 98) + 1;
+    var nSkill = arrAttribute[5];//Math.floor(Math.random() * 98) + 1;
     // 运动员奔跑方向
     var direction = (2 * Math.PI / 360) * 0;
 
@@ -70,7 +97,9 @@ function Player(x, y, num) {
 
     }
 
-
+    this.getID = function() {
+        return nNum;
+    }
     ////////////////////////////////////////////////////////////////////////////////
     // public:
     // 监察函数，用于控制运动员奔跑距离
@@ -266,7 +295,7 @@ function Player(x, y, num) {
             ctx.fillStyle = clrText;
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
-            ctx.fillText(strNum, nSetX, nSetY);
+            ctx.fillText(String(nNum), nSetX, nSetY);
             
             // 绘制球员属性
             // ctx.textAlign = "left";

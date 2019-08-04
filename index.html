@@ -13,34 +13,34 @@
                 <div id="red_add">
                     增加队员：
                     <div name="nID" class="attribute">
-                        <p>编码：</p>
-                        <input type="text" id="red_nID" />
-                        <img src="img/BeCareful.png" atl="注意"/>
+                        <p>编号：</p>
+                        <input type="text" id="red_nID" disabled="disabled" />
+                        <img src="img/BeCareful.png" atl="介绍" name="nID" />
                     </div>
                     <div name="nVNum" class="attribute">
                         <p>速度：</p>
                         <input type="text" id="red_nVNum" />
-                        <img src="img/BeCareful.png" atl="注意"/>
+                        <img src="img/BeCareful.png" atl="介绍" name="nVNum" />
                     </div>
                     <div name="nPower" class="attribute">
                         <p>爆发：</p>
                         <input type="text" id="red_nPower" />
-                        <img src="img/BeCareful.png" atl="注意"/>
+                        <img src="img/BeCareful.png" atl="介绍" name="nPower" />
                     </div>
                     <div name="nKeep" class="attribute">
                         <p>体力：</p>
                         <input type="text" id="red_nKeep" />
-                        <img src="img/BeCareful.png" atl="注意"/>
+                        <img src="img/BeCareful.png" atl="介绍" name="nKeep" />
                     </div>
                     <div name="nStrong" class="attribute">
                         <p>力量：</p>
                         <input type="text" id="red_nStrong" />
-                        <img src="img/BeCareful.png" atl="注意"/>
+                        <img src="img/BeCareful.png" atl="介绍" name="nStrong" />
                     </div>
                     <div name="nSkill" class="attribute">
                         <p>技巧：</p>
                         <input type="text" id="red_nSkill" />
-                        <img src="img/BeCareful.png" atl="注意"/>
+                        <img src="img/BeCareful.png" atl="介绍" name="nSkill" />
                     </div>
                     <button id="red_roll">随机属性</button>
                     <button id="red_sure">增加队员</button>
@@ -52,7 +52,7 @@
 
                     </div>
                     <div id="red_show">
-                        <div name="nID" class="attribute">编码：</div>
+                        <div name="nID" class="attribute">编号：</div>
                         <div name="nVNum" class="attribute">速度：</div>
                         <div name="nPower" class="attribute">爆发：</div>
                         <div name="nKeep" class="attribute">体力：</div>
@@ -70,34 +70,34 @@
                 <div id="blue_add">
                     增加队员：
                     <div name="nID" class="attribute">
-                        <p>编码：</p>
-                        <input type="text" id="blue_nID" />
-                        <img src="img/BeCareful.png" atl="注意"/>
+                        <p>编号：</p>
+                        <input type="text" id="blue_nID" disabled="disabled" />
+                        <img src="img/BeCareful.png" atl="介绍" />
                     </div>
                     <div name="nVNum" class="attribute">
                         <p>速度：</p>
                         <input type="text" id="blue_nVNum" />
-                        <img src="img/BeCareful.png" atl="注意"/>
+                        <img src="img/BeCareful.png" atl="介绍" />
                     </div>
                     <div name="nPower" class="attribute">
                         <p>爆发：</p>
                         <input type="text" id="blue_nPower" />
-                        <img src="img/BeCareful.png" atl="注意"/>
+                        <img src="img/BeCareful.png" atl="介绍" />
                     </div>
                     <div name="nKeep" class="attribute">
                         <p>体力：</p>
                         <input type="text" id="blue_nKeep" />
-                        <img src="img/BeCareful.png" atl="注意"/>
+                        <img src="img/BeCareful.png" atl="介绍" />
                     </div>
                     <div name="nStrong" class="attribute">
                         <p>力量：</p>
                         <input type="text" id="blue_nStrong" />
-                        <img src="img/BeCareful.png" atl="注意"/>
+                        <img src="img/BeCareful.png" atl="介绍" />
                     </div>
                     <div name="nSkill" class="attribute">
                         <p>技巧：</p>
                         <input type="text" id="blue_nSkill" />
-                        <img src="img/BeCareful.png" atl="注意"/>
+                        <img src="img/BeCareful.png" atl="介绍" />
                     </div>
                     <button id="blue_roll">随机属性</button>
                     <button id="blue_sure">增加队员</button>
@@ -109,7 +109,7 @@
 
                     </div>
                     <div id="blue_show">
-                        <div name="nID" class="attribute">编码：</div>
+                        <div name="nID" class="attribute">编号：</div>
                         <div name="nVNum" class="attribute">速度：</div>
                         <div name="nPower" class="attribute">爆发：</div>
                         <div name="nKeep" class="attribute">体力：</div>
@@ -137,9 +137,15 @@
                 <button id="test">测试</button>
             </div>
             <div id="log">
-                <h4>赛事简报</h4>
+                <h3>赛事简报</h3>
                 <div id="log_text"></div>
             </div>
+        </div>
+
+        <div id="frame_becareful">
+            <h4>属性</h4>
+            <div id="frame_becareful_data1">这是一段对这个属性的介绍1</div>
+            <div id="frame_becareful_data2">这是一段对这个属性的介绍2</div>
         </div>
         
         
@@ -148,7 +154,7 @@
     <!-- js -->
     <script type="text/javascript" src="js/Global.js"></script>
     <script type="text/javascript" src="js/Football.js"></script>
-    <script type="text/javascript" src="js/Player.js"></script>
     <script type="text/javascript" src="js/Footballfield.js"></script>
+    <script type="text/javascript" src="js/Player.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 </html>
