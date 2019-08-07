@@ -3,12 +3,23 @@ var Global = function() {
     // 单例对象
     this.instance = null;
 
+    // 游戏情况：是否开始
+    var m_bGame = false;
+
+    // 足球比分
+    var m_nRedScore = 0;
+    var m_nBlueScore = 0;
+
     // 足球场轮廓起始位置
     var m_nStartX = 40;
     var m_nStartY = 30;
     // 足球场宽高
     var m_nWidth = 0;
     var m_nHeight = 0;
+    // 球门中心点 [蓝队球门][红队球门];
+    var m_goal = [];
+    // 像素 / 米 的比值
+    var m_fScale;
 
     // 球员入场位置
     // [[红队起始点比例, 红队可偏移比例], [蓝队起始点比例, 蓝队可偏移比例]]
@@ -17,14 +28,26 @@ var Global = function() {
     // 球员颜色
     var m_clrTeam = ["red", "blue"];
 
-    // 像素 / 米 的比值
-    var m_fScale;
+    // 选中球员nIndex
+    var m_nIndexRedPlayer = -1;
+    var m_nIndexBluePlayer = -1;
+
 
     // 基本时间
     var m_nBaseTime = 50;
 
     this.show = function() {
         console.log("ddd");
+    }
+
+    // 设置游戏情况
+    this.setGameState = function(bGame) {
+        m_bGame = bGame;
+    }
+
+    // 获取游戏情况
+    this.getGameState = function() {
+        return(m_bGame);
     }
 
     // 获取canvas对象
@@ -46,6 +69,26 @@ var Global = function() {
             return ;
         }
         
+    }
+
+    // 设置红队得分
+    this.addRedScore = function() {
+        m_nRedScore++;
+    }
+
+    // 获取红队得分
+    this.getRedScore = function() {
+        return m_nRedScore;
+    }
+
+    // 设置蓝队得分
+    this.addBlueScore = function() {
+        m_nBlueScore++;
+    }
+
+    // 获取蓝队得分
+    this.getBlueScore = function() {
+        return m_nBlueScore;
     }
 
     // 获取起始位置X
@@ -78,6 +121,19 @@ var Global = function() {
         return m_nHeight;
     }
 
+    // 设置球门坐标
+    this.setGoalPosition = function(pRed, pBlue) {
+        // 球门中心点 [蓝队球门][红队球门];
+        m_goal.length = 0;
+        m_goal.push(pBlue);
+        m_goal.push(pRed);
+    }
+
+    // 获取球门坐标
+    this.getGoalPosition = function() {
+        return m_goal;
+    }
+
     // 获取球员入场位置X数组（百分比）
     this.getAdmissionX = function() {
         return m_arrAdmissionX;
@@ -103,12 +159,54 @@ var Global = function() {
         return m_fScale;
     }
 
+    // 设置
+    this.setIndexRedPlayer = function(nIndex) {
+        m_nIndexRedPlayer = nIndex;
+    }
+
+    // 获取红队选中球员nIndex
+    this.getIndexRedPlayer = function() {
+        return m_nIndexRedPlayer;
+    }
+
+    // 设置
+    this.setIndexBluePlayer = function(nIndex) {
+        m_nIndexBluePlayer = nIndex;
+    }
+
+    // 获取蓝队选中球员nIndex
+    this.getIndexBluePlayer = function() {
+        return m_nIndexBluePlayer;
+    }
+    
     // 获取时间基数
     this.getBaseTime = function() {
         return m_nBaseTime;
     }
 
-    // 
+    // 全部队员开始
+    this.startAllPlayers = function() {
+        for (var index in g_arrRedPlayer) {
+            g_arrRedPlayer[index].run(0);
+        }
+        for (var index in g_arrBluePlayer) {
+            g_arrBluePlayer[index].run(0);
+        }
+    }
+
+    // 全部队员停止
+    this.stopAllPlayers = function() {
+        for (var index in g_arrRedPlayer) {
+            g_arrRedPlayer[index].stopMust();
+            // g_arrRedPlayer[index].stop();
+        }
+        for (var index in g_arrBluePlayer) {
+            g_arrBluePlayer[index].stopMust();
+            // g_arrBluePlayer[index].stop();
+        }
+    }
+
+    // 右下角日志系统
     this.MyLog = function(strLog) {
         var div = document.getElementById("log_text");
         var now = new Date();
@@ -144,6 +242,7 @@ var Global = function() {
     }
 }
 
+// 获取单例对象
 Global.getInstance = function() {
     if (!this.instance) {
         this.instance = new Global();

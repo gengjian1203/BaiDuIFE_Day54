@@ -37,13 +37,13 @@ function Player(nTeam, arrAttribute) {
     var y = m_global.getHeight() * m_global.getAdmissionY()[nTeam][0] + Math.floor(Math.random() * (m_global.getHeight() * m_global.getAdmissionY()[nTeam][1]));
     var nSetX = Global.getInstance().getStartX() + x;
     var nSetY = Global.getInstance().getStartY() + y;
-    // 运动员编号
-    var nNum = arrAttribute[0];
     // 运动员队伍颜色
+    var m_nTeam = nTeam;
     var clrCircle = "white";
     var clrFill = m_global.getTeamColor()[nTeam];
     var clrText = "white";
     var styleText = "13px bold 黑体";
+    var bSignCircle = false;
     // 运动员跑步状态
     var bGo = false;
     // 按下停止的即时速度，用于计算惯性减速距离
@@ -56,6 +56,8 @@ function Player(nTeam, arrAttribute) {
     var nSaveSum = 0;
 
     // 运动员属性
+    // 运动员编号
+    var nID = arrAttribute[0];
     // 速度属性 (1 - 99)
     var nVNum = arrAttribute[1];//Math.floor(Math.random() * 98) + 1;
     // 即时速度
@@ -72,8 +74,12 @@ function Player(nTeam, arrAttribute) {
     var fKeepTime = ((5 / 98) * nKeep + (975 / 98)) * 1000;
     // 力量
     var nStrong = arrAttribute[4];//Math.floor(Math.random() * 98) + 1;
+    // 运动员给足球的初速度
+    var fStrongVMax = ((45 / 98) * nStrong + (445 / 98)) / 1000;
     // 技巧
     var nSkill = arrAttribute[5];//Math.floor(Math.random() * 98) + 1;
+    // 运动员对踢出足球的偏移最大量（99最大偏移角度1°，1最大偏移角度10°）
+    var fSkillAngleMax = ((-9 / 98) * nSkill + (989 / 98));// * (2 * Math.PI / 360);
     // 运动员奔跑方向
     var direction = (2 * Math.PI / 360) * 0;
 
@@ -82,24 +88,87 @@ function Player(nTeam, arrAttribute) {
     var nStartTime = tStart.getTime();
 
     ////////////////////////////////////////////////////////////////////////////////
-    // private:
-    // 提升速度，二次贝塞尔曲线
+    // public:
+    // 获取球员的位置X
     ////////////////////////////////////////////////////////////////////////////////
-    function bezier2Up() {
-        // fVNow = (-fVMax / fPowerTime) * t^2 + ((2 * fVMax) / fPowerTime) * t
+    this.getPositionX = function() {
+        return nSetX;
     }
 
     ////////////////////////////////////////////////////////////////////////////////
-    // private:
-    // 降低速度，二次贝塞尔曲线
+    // public:
+    // 获取球员的位置Y
     ////////////////////////////////////////////////////////////////////////////////
-    function bezier2Down() {
-
+    this.getPositionY = function() {
+        return nSetY;
     }
 
+    ////////////////////////////////////////////////////////////////////////////////
+    // public:
+    // 设置选中标记
+    ////////////////////////////////////////////////////////////////////////////////
+    this.setSignCircle = function(bSign) {
+        bSignCircle = bSign;
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // public:
+    // 获取球员ID
+    ////////////////////////////////////////////////////////////////////////////////
     this.getID = function() {
-        return nNum;
+        return nID;
     }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // public:
+    // 获取速度属性
+    ////////////////////////////////////////////////////////////////////////////////
+    this.getVNum = function() {
+        return nVNum;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // public:
+    // 获取爆发力属性
+    ////////////////////////////////////////////////////////////////////////////////
+    this.getPower = function() {
+        return nPower;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // public:
+    // 获取体力属性
+    ////////////////////////////////////////////////////////////////////////////////
+    this.getKeep = function() {
+        return nKeep;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // public:
+    // 获取力量属性
+    ////////////////////////////////////////////////////////////////////////////////
+    this.getStrong = function() {
+        return nStrong;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // public:
+    // 获取技巧属性
+    ////////////////////////////////////////////////////////////////////////////////
+    this.getSkill = function() {
+        console.log(nSkill);
+        return nSkill;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // public:
+    // 获取当前速度
+    ////////////////////////////////////////////////////////////////////////////////
+    this.getVNow = function() {
+        // console.log(fVNow);
+        return (fVNow * 1000).toFixed(2);
+    }
+
     ////////////////////////////////////////////////////////////////////////////////
     // public:
     // 监察函数，用于控制运动员奔跑距离
@@ -113,15 +182,50 @@ function Player(nTeam, arrAttribute) {
             }
         }
 
+        var global =  Global.getInstance();
         // 监察是否与足球接触
-        var nDistance = Math.sqrt(Math.pow(Football.getInstance().getPositionY() - nSetY ,2) + Math.pow(Football.getInstance().getPositionX() - nSetX, 2));
-        
-        // 如果距离小于 运动员与足球半径之和，即为接触
-        var fScale = Global.getInstance().getScale();
-        if (nDistance <= (1 * fScale + 0.75 * fScale)) {
-            // 运动员与足球全部停止
-            this.stopMust();
-            Football.getInstance().stop();
+        if (!Football.getInstance().getProtect()) {
+            var nDistance = Math.sqrt(Math.pow(Football.getInstance().getPositionY() - nSetY ,2) + Math.pow(Football.getInstance().getPositionX() - nSetX, 2));
+            // 如果距离小于 运动员与足球半径之和，即为接触
+            var fScale = global.getScale();
+            if (nDistance <= (1 * fScale + 0.75 * fScale)) {
+                // 运动员与足球全部停止
+                // this.stopMust();
+                // Football.getInstance().stop();
+    
+                // 判断阵营
+                if (0 == m_nTeam) {
+                    global.MyLog("红队的" + nID + "号球员抢到了球。");
+                    // 红队抢到球后，射门
+                    var dir = Math.atan2(global.getGoalPosition()[0][1] - this.getPositionY(), global.getGoalPosition()[0][0] - this.getPositionX());
+                    direction = dir * 180 / Math.PI;
+                    direction1 = Math.pow(-1, Math.floor(Math.random() * 10)) * fSkillAngleMax;
+                    var dir1 = (direction + direction1) * Math.PI * 2 / 360;
+                    Football.getInstance().setDirection(dir1);
+                    // console.log(fStrongVMax);
+                    Football.getInstance().setVStart(fStrongVMax);
+                    Football.getInstance().setProtect(true);
+                    Football.getInstance().run();
+                    setTimeout(() => {
+                        Football.getInstance().setProtect(false);
+                    }, 5 * global.getBaseTime());
+                } else {
+                    global.MyLog("蓝队的" + nID + "号球员抢到了球。");
+                    // 蓝队抢到球后，射门
+                    var dir = Math.atan2(global.getGoalPosition()[1][1] - this.getPositionY(), global.getGoalPosition()[1][0] - this.getPositionX());
+                    direction = dir * 180 / Math.PI;
+                    direction1 = Math.pow(-1, Math.floor(Math.random() * 10)) * fSkillAngleMax;
+                    var dir1 = (direction + direction1) * Math.PI * 2 / 360;
+                    Football.getInstance().setDirection(dir1);
+                    // console.log(fStrongVMax);
+                    Football.getInstance().setVStart(fStrongVMax);
+                    Football.getInstance().setProtect(true);
+                    Football.getInstance().run();
+                    setTimeout(() => {
+                        Football.getInstance().setProtect(false);
+                    }, 5 * global.getBaseTime());
+                }
+            }
         }
     }
 
@@ -281,6 +385,15 @@ function Player(nTeam, arrAttribute) {
             var fScale = Global.getInstance().getScale();
             var strText = "";
 
+            // 绘制选中标记
+            if (bSignCircle) {
+                ctx.beginPath();
+                ctx.strokeStyle = "black";
+                ctx.lineWidth = "2";
+                ctx.arc(nSetX, nSetY, 1.5 * fScale, 0, 2 * Math.PI);
+                ctx.stroke();
+            }
+
             // 绘制同心圆
             ctx.beginPath();
             ctx.strokeStyle = clrCircle;
@@ -295,7 +408,7 @@ function Player(nTeam, arrAttribute) {
             ctx.fillStyle = clrText;
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
-            ctx.fillText(String(nNum), nSetX, nSetY);
+            ctx.fillText(String(nID), nSetX, nSetY);
             
             // 绘制球员属性
             // ctx.textAlign = "left";

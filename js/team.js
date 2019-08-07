@@ -1,18 +1,13 @@
 // 初始化球队情况
 function initTeam() {
     // 生成运动员
-    g_arrRedPlayer.push(g_factoryP.signing("red",[1, 10, 20, 30, 40, 50]));
-    g_arrRedPlayer.push(g_factoryP.signing("red",[3, 10, 20, 30, 40, 50]));
-    g_arrRedPlayer.push(g_factoryP.signing("red",[6, 10, 20, 30, 40, 50]));
-    g_arrRedPlayer.push(g_factoryP.signing("red",[10, 10, 20, 30, 40, 50]));
+    g_arrRedPlayer.push(g_factoryP.signing("red",[1, 96, 72, 45, 53, 79]));
+    g_arrRedPlayer.push(g_factoryP.signing("red",[3, 82, 49, 15, 60, 81]));
+    g_arrRedPlayer.push(g_factoryP.signing("red",[6, 98, 52, 94, 93, 69]));
 
-    g_arrBluePlayer.push(g_factoryP.signing("blue", [1, 33, 44, 22, 11, 65]));
-    g_arrBluePlayer.push(g_factoryP.signing("blue", [2, 33, 44, 22, 11, 65]));
-    g_arrBluePlayer.push(g_factoryP.signing("blue", [5, 33, 44, 22, 11, 65]));
-    g_arrBluePlayer.push(g_factoryP.signing("blue", [8, 33, 44, 22, 11, 65]));
-    g_arrBluePlayer.push(g_factoryP.signing("blue", [4, 33, 44, 22, 11, 65]));
-    g_arrBluePlayer.push(g_factoryP.signing("blue", [10, 33, 44, 22, 11, 65]));
-    g_arrBluePlayer.push(g_factoryP.signing("blue", [9, 33, 44, 22, 11, 65]));
+    g_arrBluePlayer.push(g_factoryP.signing("blue", [2, 53, 44, 22, 62, 96]));
+    g_arrBluePlayer.push(g_factoryP.signing("blue", [4, 73, 99, 72, 81, 57]));
+    g_arrBluePlayer.push(g_factoryP.signing("blue", [10, 63, 54, 36, 65, 78]));
 
     // 绘制运动员
     for(var index in g_arrRedPlayer) {
@@ -21,6 +16,17 @@ function initTeam() {
     for(var index in g_arrBluePlayer) {
         g_arrBluePlayer[index].show();
     }
+}
+
+// 刷新比分
+function updateScore() {
+    var objRed = document.getElementById("red");
+    var objH3 = objRed.getElementsByTagName("h3");
+    objH3[0].innerHTML = "红队状况 比分：" + Global.getInstance().getRedScore();
+    var objBlue = document.getElementById("blue");
+    var objH3 = objBlue.getElementsByTagName("h3");
+    objH3[0].innerHTML = "蓝队状况 比分：" + Global.getInstance().getBlueScore();
+    
 }
 
 // 检测是否为合法数据
@@ -52,6 +58,7 @@ function isRightfulData(target) {
 // 红队球员显示
 function redTeamShow() {
     var objDiv = document.getElementById("red_players");
+    // 清空显示
     objDiv.innerHTML = "";
     for (var index in g_arrRedPlayer) {
         var objBtn = document.createElement("button");
@@ -62,7 +69,14 @@ function redTeamShow() {
 
 // 蓝队球员显示
 function blueTeamShow() {
-
+    var objDiv = document.getElementById("blue_players");
+    // 清空显示
+    objDiv.innerHTML = "";
+    for (var index in g_arrBluePlayer) {
+        var objBtn = document.createElement("button");
+        objBtn.innerHTML = g_arrBluePlayer[index].getID();
+        objDiv.appendChild(objBtn);
+    }
 }
 
 // 红队球员属性随机
@@ -139,6 +153,8 @@ function redAddSure() {
 
     // 重置属性
     redAddRoll();
+    // 刷新显示模块
+    redTeamShow();
 }
 
 // // 红队球员确认删除
@@ -227,6 +243,8 @@ function blueAddSure() {
 
     // 重置属性
     blueAddRoll();
+
+    blueTeamShow();
 }
 
 // // 蓝队球员确认删除

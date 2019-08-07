@@ -204,6 +204,7 @@ function FootballField(X, Y) {
             Global.getInstance().setScale(fScale);
             Global.getInstance().setWidth(nWidth);
             Global.getInstance().setHeight(nHeight);
+            Global.getInstance().setGoalPosition([nStartX, nStartY + (nHeight / 2)], [nStartX + nWidth, nStartY + (nHeight / 2)]);
 
             // 绘制足球场
             draw();

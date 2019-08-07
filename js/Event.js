@@ -44,12 +44,12 @@ function eventRedMouseOver(e) {
             case "nStrong":
                 var nStrong = parseInt(document.getElementById("red_nStrong").value);
                 showBecareful(target, "力量", "力量值决定踢出球的最大速度", 
-                                "待计算");
+                                "运动员射门时，给球的初始速度为" + ((45 / 98) * nStrong + (445 / 98)).toFixed(2) + "m/s");
                 break;
             case "nSkill":
                 var nSkill = parseInt(document.getElementById("red_nSkill").value);
                 showBecareful(target, "技巧", "技巧值决定踢球方向的准确性", 
-                                "待计算");
+                                "运动员射门时，球方向会偏移-" + ((-9 / 98) * nSkill + (989 / 98)).toFixed(2) + "°~+" + ((-9 / 98) * nSkill + (989 / 98)).toFixed(2) + "°");
                 break;
             default:
                 break;
@@ -76,15 +76,28 @@ function eventRedPlayersClick(e) {
         // 获取ID指定的运动员
         for (nIndex in g_arrRedPlayer) {
             if (nID == g_arrRedPlayer[nIndex].getID()) {
+                Global.getInstance().setIndexRedPlayer(nIndex);
                 break;
             }
         }
-        console.log(nIndex);
+        // console.log(nIndex);
         // 将信息显示在界面
         var objDiv = document.getElementById("red_show");
         var obj = objDiv.getElementsByTagName("div");
+        // 更新界面数据 
         obj.nID.innerHTML = "编号：" + g_arrRedPlayer[nIndex].getID();
-        //
+        obj.nVNum.innerHTML = "速度：" + g_arrRedPlayer[nIndex].getVNum();
+        obj.nPower.innerHTML = "爆发：" + g_arrRedPlayer[nIndex].getPower();
+        obj.nKeep.innerHTML = "体力：" + g_arrRedPlayer[nIndex].getKeep();
+        obj.nStrong.innerHTML = "力量：" + g_arrRedPlayer[nIndex].getStrong();
+        obj.nSkill.innerHTML = "技巧：" + g_arrRedPlayer[nIndex].getSkill();
+        obj.nVNow.innerHTML = "当前速度：" + g_arrRedPlayer[nIndex].getVNow() + "m/s";
+
+        // 球场标记选中队员
+        for (var i in g_arrRedPlayer) {
+            g_arrRedPlayer[i].setSignCircle(false);
+        }
+        g_arrRedPlayer[nIndex].setSignCircle(true);
     }
 }
 
@@ -133,12 +146,12 @@ function eventBlueMouseOver(e) {
             case "nStrong":
                 var nStrong = parseInt(document.getElementById("blue_nStrong").value);
                 showBecareful(target, "力量", "力量值决定踢出球的最大速度", 
-                                "待计算");
+                                "运动员射门时，给球的初始速度为" + ((45 / 98) * nStrong + (445 / 98)).toFixed(2) + "m/s");
                 break;
             case "nSkill":
                 var nSkill = parseInt(document.getElementById("blue_nSkill").value);
                 showBecareful(target, "技巧", "技巧值决定踢球方向的准确性", 
-                                "待计算");
+                                "运动员射门时，球方向会偏移-" + ((-9 / 98) * nSkill + (989 / 98)).toFixed(2) + "°~+" + ((-9 / 98) * nSkill + (989 / 98)).toFixed(2) + "°");
                 break;
             default:
                 break;
@@ -155,6 +168,41 @@ function eventBlueMouseOut(e) {
     }
 }
 
+// 蓝队点击队员，展示队员属性
+function eventBluePlayersClick(e) {
+    var ev = e || window.event;
+    var target = ev.event || ev.srcElement;
+    if ("button" == target.nodeName.toLowerCase()) {
+        var nIndex = 0;
+        var nID = parseInt(target.innerHTML);
+        // 获取ID指定的运动员
+        for (nIndex in g_arrBluePlayer) {
+            if (nID == g_arrBluePlayer[nIndex].getID()) {
+                Global.getInstance().setIndexBluePlayer(nIndex);
+                break;
+            }
+        }
+        // console.log(nIndex);
+        // 将信息显示在界面
+        var objDiv = document.getElementById("blue_show");
+        var obj = objDiv.getElementsByTagName("div");
+        // 
+        obj.nID.innerHTML = "编号：" + g_arrBluePlayer[nIndex].getID();
+        obj.nVNum.innerHTML = "速度：" + g_arrBluePlayer[nIndex].getVNum();
+        obj.nPower.innerHTML = "爆发：" + g_arrBluePlayer[nIndex].getPower();
+        obj.nKeep.innerHTML = "体力：" + g_arrBluePlayer[nIndex].getKeep();
+        obj.nStrong.innerHTML = "力量：" + g_arrBluePlayer[nIndex].getStrong();
+        obj.nSkill.innerHTML = "技巧：" + g_arrBluePlayer[nIndex].getSkill();
+        obj.nVNow.innerHTML = "当前速度：" + g_arrBluePlayer[nIndex].getVNow() + "m/s";
+
+        // 球场标记选中队员
+        for (var i in g_arrBluePlayer) {
+            g_arrBluePlayer[i].setSignCircle(false);
+        }
+        g_arrBluePlayer[nIndex].setSignCircle(true);
+    }
+}
+
 // 控制面板点击事件
 function eventControlClick(e) {
     var ev = e || window.event;
@@ -166,43 +214,35 @@ function eventControlClick(e) {
                 document.getElementById("player_start").disabled = "disabled";
                 document.getElementById("player_stop").disabled = "";
                 
-                for (var index in g_arrRedPlayer) {
-                    g_arrRedPlayer[index].run(0);
-                }
-                for (var index in g_arrBluePlayer) {
-                    g_arrBluePlayer[index].run(0);
-                }
+                Global.getInstance().setGameState(true);
+                Global.getInstance().startAllPlayers();
                 break;
             case "player_stop":
                 // 点击运动员、停止按钮
                 document.getElementById("player_start").disabled = "";
                 document.getElementById("player_stop").disabled = "disabled";
                 
-                for (var index in g_arrRedPlayer) {
-                    g_arrRedPlayer[index].stop();
-                }
-                for (var index in g_arrBluePlayer) {
-                    g_arrBluePlayer[index].stop();
-                }
+                Global.getInstance().setGameState(false);
+                Global.getInstance().stopAllPlayers();
                 break;
-            case "football_start":
-                // 点击足球、开始按钮
-                document.getElementById("football_start").disabled = "disabled";
-                document.getElementById("football_stop").disabled = "";
+            // case "football_start":
+            //     // 点击足球、开始按钮
+            //     document.getElementById("football_start").disabled = "disabled";
+            //     document.getElementById("football_stop").disabled = "";
 
-                Football.getInstance().run();
+            //     Football.getInstance().run();
 
-                break;
-            case "football_stop":
-                // 点击足球、停止按钮
-                document.getElementById("football_start").disabled = "";
-                document.getElementById("football_stop").disabled = "disabled";
+            //     break;
+            // case "football_stop":
+            //     // 点击足球、停止按钮
+            //     document.getElementById("football_start").disabled = "";
+            //     document.getElementById("football_stop").disabled = "disabled";
 
-                Football.getInstance().stop();
-                break;
-            case "test":
-                Global.getInstance().MyLog("123123123aabbc");
-                break;
+            //     Football.getInstance().stop();
+            //     break;
+            // case "test":
+            //     updateScore();
+            //     break;
             default:
                 break;
         }
@@ -225,4 +265,19 @@ function timerUpdate() {
     // 绘制足球
     Football.getInstance().update();
     Football.getInstance().show();
+
+    // 绘制得分特效
+    Goal.getInstance().show();
+
+    // 刷新球员的当前速度
+    if (Global.getInstance().getIndexRedPlayer() >=  0) {
+        var objDiv = document.getElementById("red_show");
+        var obj = objDiv.getElementsByTagName("div");
+        obj.nVNow.innerHTML = "当前速度：" + g_arrRedPlayer[Global.getInstance().getIndexRedPlayer()].getVNow() + "m/s";
+    }
+    if (Global.getInstance().getIndexBluePlayer() >=  0) {
+        var objDiv = document.getElementById("blue_show");
+        var obj = objDiv.getElementsByTagName("div");
+        obj.nVNow.innerHTML = "当前速度：" + g_arrBluePlayer[Global.getInstance().getIndexBluePlayer()].getVNow() + "m/s";
+    }
 }

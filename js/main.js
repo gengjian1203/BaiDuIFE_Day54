@@ -22,12 +22,17 @@ window.onload = function() {
     // 初始化球队情况
     initTeam();
 
+    // 绘制得分特效
+    Goal.getInstance().show();
+
     // 控件属性初始化
     redAddRoll();
     blueAddRoll();
     redTeamShow();
+    blueTeamShow();
+
     document.getElementById("player_stop").disabled = "disabled";
-    document.getElementById("football_stop").disabled = "disabled";
+    // document.getElementById("football_stop").disabled = "disabled";
     Global.getInstance().MyLog("欢迎来到“足球小将”");
 
     // 红队增加面板事件绑定
@@ -54,10 +59,16 @@ window.onload = function() {
     // 蓝队鼠标划出
     objBlue.addEventListener("mouseout", function(e) {eventBlueMouseOut(e);});
 
+    // 蓝队队员面板事件绑定
+    var objBluePlayers = document.getElementById("blue_players");
+    // 蓝队队员点击
+    objBluePlayers.addEventListener("click", function(e) {eventBluePlayersClick(e);});    
+
     // 控制面板事件绑定
     var objDiv = document.getElementById("control");
     // 控制面板点击
     objDiv.addEventListener("click", function(e) {eventControlClick(e);});
+    
 
     // 定时器
     setInterval(timerUpdate, Global.getInstance().getBaseTime());        

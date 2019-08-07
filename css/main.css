@@ -56,7 +56,7 @@ button {
 }
 
 #main #red {
-    flex: 1 1 auto;
+    flex: 1;
     height: calc(100% - 12px);
 
     border: 4px solid red;
@@ -85,12 +85,13 @@ button {
 
 #main #red #red_team #red_players {
     padding: 5px;
+    margin: 0px auto;
 
     border: 1px solid #000000;
 }
 
 #main #bg {
-    flex: 0 0x auto;
+    flex: 0 0 auto;
     width: 800px;
     height: calc(100% - 2px);
 
@@ -98,7 +99,7 @@ button {
 }
 
 #main #blue {
-    flex: 1 1 auto;
+    flex: 1;
     height: calc(100% - 12px);
 
     border: 4px solid blue;
@@ -149,6 +150,22 @@ button {
 
     margin: 2px;
 }
+
+#less #control #player {
+    text-align: center;
+
+}
+
+#less #control #player #player_start {
+    font-size: 20px;
+    margin: 20px;
+}
+
+#less #control #player #player_stop {
+    font-size: 20px;
+    margin: 20px;
+}
+
 
 #less #log {
     flex: 1;
