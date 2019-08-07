@@ -1,13 +1,18 @@
-// 红队点击
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：eventRedClick
+// 功   能：红队区点击消息响应函数、事件代理
+// 参   数：DOM Event : e
+////////////////////////////////////////////////////////////////////////////////
 function eventRedClick(e) {
     var ev = e || window.event;
     var target = ev.event || ev.srcElement;
     if ("button" == target.nodeName.toLowerCase()) {
         switch (target.id) {
+            // 随机属性按钮
             case "red_roll":
-                // console.log("roll");
                 redAddRoll();
                 break;
+            // 确定添加按钮
             case "red_sure":
                 redAddSure();
                 break;
@@ -17,7 +22,11 @@ function eventRedClick(e) {
     }
 }
 
-// 红队鼠标移入
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：eventRedMouseOver
+// 功   能：红队区鼠标移入消息响应函数、事件代理，用以显示介绍框。
+// 参   数：DOM Event : e
+////////////////////////////////////////////////////////////////////////////////
 function eventRedMouseOver(e) {
     var ev = e || window.event;
     var target = ev.event || ev.srcElement;
@@ -57,7 +66,11 @@ function eventRedMouseOver(e) {
     }
 }
 
-// 红队鼠标划出
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：eventRedMouseOut
+// 功   能：红队区鼠标移出消息响应函数、事件代理
+// 参   数：DOM Event : e
+////////////////////////////////////////////////////////////////////////////////
 function eventRedMouseOut(e) {
     var ev = e || window.event;
     var target = ev.event || ev.srcElement;
@@ -66,7 +79,11 @@ function eventRedMouseOut(e) {
     }
 }
 
-// 红队点击队员，展示队员属性
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：eventRedPlayersClick
+// 功   能：红队队员区鼠标点击消息响应函数、事件代理。展示队员属性
+// 参   数：DOM Event : e
+////////////////////////////////////////////////////////////////////////////////
 function eventRedPlayersClick(e) {
     var ev = e || window.event;
     var target = ev.event || ev.srcElement;
@@ -101,7 +118,11 @@ function eventRedPlayersClick(e) {
     }
 }
 
-// 蓝队点击
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：eventBlueClick
+// 功   能：蓝队区点击消息响应函数、事件代理
+// 参   数：DOM Event : e
+////////////////////////////////////////////////////////////////////////////////
 function eventBlueClick(e) {
     var ev = e || window.event;
     var target = ev.event || ev.srcElement;
@@ -119,7 +140,11 @@ function eventBlueClick(e) {
     }
 }
 
-// 蓝队鼠标划入
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：eventBlueMouseOver
+// 功   能：蓝队区鼠标移入消息响应函数、事件代理，用以显示介绍框。
+// 参   数：DOM Event : e
+////////////////////////////////////////////////////////////////////////////////
 function eventBlueMouseOver(e) {
     var ev = e || window.event;
     var target = ev.event || ev.srcElement;
@@ -159,7 +184,11 @@ function eventBlueMouseOver(e) {
     }
 }
 
-// 蓝队鼠标划出
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：eventBlueMouseOut
+// 功   能：蓝队区鼠标移出消息响应函数、事件代理
+// 参   数：DOM Event : e
+////////////////////////////////////////////////////////////////////////////////
 function eventBlueMouseOut(e) {
     var ev = e || window.event;
     var target = ev.event || ev.srcElement;
@@ -168,7 +197,11 @@ function eventBlueMouseOut(e) {
     }
 }
 
-// 蓝队点击队员，展示队员属性
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：eventBluePlayersClick
+// 功   能：蓝队队员区鼠标点击消息响应函数、事件代理。展示队员属性
+// 参   数：DOM Event : e
+////////////////////////////////////////////////////////////////////////////////
 function eventBluePlayersClick(e) {
     var ev = e || window.event;
     var target = ev.event || ev.srcElement;
@@ -203,7 +236,11 @@ function eventBluePlayersClick(e) {
     }
 }
 
-// 控制面板点击事件
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：eventControlClick
+// 功   能：控制面板鼠标点击消息响应函数、事件代理。用于对于游戏节奏的控制
+// 参   数：DOM Event : e
+////////////////////////////////////////////////////////////////////////////////
 function eventControlClick(e) {
     var ev = e || window.event;
     var target = ev.event || ev.srcElement;
@@ -249,7 +286,10 @@ function eventControlClick(e) {
     }
 }
 
-// 球场刷新函数
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：timerUpdate
+// 功   能：页面刷新函数
+////////////////////////////////////////////////////////////////////////////////
 function timerUpdate() {
     // 绘制足球场
     Global.getInstance().clearCanvas();

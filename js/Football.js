@@ -1,3 +1,6 @@
+////////////////////////////////////////////////////////////////////////////////
+// 足球类
+////////////////////////////////////////////////////////////////////////////////
 function Football () {
     // 单例对象
     this.instance = null;
@@ -26,17 +29,33 @@ function Football () {
     var tStart = new Date();
     var nStartTime = tStart.getTime();
     
-    // 获取足球X轴位置
+    ////////////////////////////////////////////////////////////////////////////////
+    // public:
+    // 函   数：this.getPositionX
+    // 功   能：获取足球X轴位置
+    // 返回 值：足球中心的X坐标
+    ////////////////////////////////////////////////////////////////////////////////
     this.getPositionX = function() {
         return (nSetX + nX + 0.75 * Global.getInstance().getScale());
     }
     
-    // 获取足球Y轴位置
+    ////////////////////////////////////////////////////////////////////////////////
+    // public:
+    // 函   数：this.getPositionY
+    // 功   能：获取足球Y轴位置
+    // 返回 值：足球中心的Y坐标
+    ////////////////////////////////////////////////////////////////////////////////
     this.getPositionY = function() {
         return (nSetY + nY + 0.75 * Global.getInstance().getScale());
     }
 
-    // 设置足球位置
+    ////////////////////////////////////////////////////////////////////////////////
+    // public:
+    // 函   数：this.setPosition
+    // 功   能：设置足球位置
+    // 参   数：number : x
+    //         number : y
+    ////////////////////////////////////////////////////////////////////////////////
     this.setPosition = function(x, y) {
         nSetX = Global.getInstance().getStartX() + x - 0.75 * Global.getInstance().getScale();
         nSetY = Global.getInstance().getStartY() + y - 0.75 * Global.getInstance().getScale();
@@ -44,12 +63,22 @@ function Football () {
         nY = 0;
     }
 
-    // 设置足球角度
+    ////////////////////////////////////////////////////////////////////////////////
+    // public:
+    // 函   数：this.setDirection
+    // 功   能：设置足球角度
+    // 参   数：number : nDir 角度
+    ////////////////////////////////////////////////////////////////////////////////
     this.setDirection = function(nDir) {
         direction = nDir;
     }
 
-    // 设置足球初速度
+    ////////////////////////////////////////////////////////////////////////////////
+    // public:
+    // 函   数：this.setVStart
+    // 功   能：设置足球初速度
+    // 参   数：number : nV 初速度单位 m/ms
+    ////////////////////////////////////////////////////////////////////////////////
     this.setVStart = function(nV) {
         fVSta = nV;
     }
@@ -65,6 +94,7 @@ function Football () {
     }
 
     // 监察函数
+    // 用以监察足球进球、出界
     this.watch = function() {
         var global = Global.getInstance();
         // 如果红队进球
@@ -354,6 +384,7 @@ function Football () {
     }
 }
 
+// 获取单例对象
 Football.getInstance = function() {
     if (!this.instance) {
         this.instance = new Football();

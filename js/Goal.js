@@ -1,3 +1,4 @@
+// 进球图样展示
 function Goal() {
     this.instance = null;
     var m_bShow = false;
@@ -24,6 +25,7 @@ function Goal() {
     }
 }
 
+// 获取单例对象
 Goal.getInstance = function() {
     if (!this.instance) {
         this.instance = new Goal();

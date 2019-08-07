@@ -9,7 +9,6 @@ var g_factoryP = new PlayerFactory();
 var g_arrRedPlayer = [];
 var g_arrBluePlayer = [];
 
-
 // 主函数
 window.onload = function() {
     // 绘制足球场
@@ -49,7 +48,6 @@ window.onload = function() {
     // 红队队员点击
     objRedPlayers.addEventListener("click", function(e) {eventRedPlayersClick(e);});
     
-
     // 蓝队增加面板事件绑定
     var objBlue = document.getElementById("blue_add");
     // 蓝队点击

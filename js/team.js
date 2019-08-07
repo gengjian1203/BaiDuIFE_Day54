@@ -1,4 +1,7 @@
-// 初始化球队情况
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：initTeam
+// 功   能：每队初始化三名队员、并将它们绘制出来
+////////////////////////////////////////////////////////////////////////////////
 function initTeam() {
     // 生成运动员
     g_arrRedPlayer.push(g_factoryP.signing("red",[1, 96, 72, 45, 53, 79]));
@@ -18,7 +21,10 @@ function initTeam() {
     }
 }
 
-// 刷新比分
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：updateScore
+// 功   能：读取两队分数，通过查找、并且操作DOM，将比分现实出来
+////////////////////////////////////////////////////////////////////////////////
 function updateScore() {
     var objRed = document.getElementById("red");
     var objH3 = objRed.getElementsByTagName("h3");
@@ -29,7 +35,13 @@ function updateScore() {
     
 }
 
-// 检测是否为合法数据
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：isRightfulData
+// 功   能：添加队员时，检测输入的属性是否为合法数据
+// 参   数：HTMLElement : target
+// 返回 值：true : 数值合法
+//         false : 数值非法
+////////////////////////////////////////////////////////////////////////////////
 function isRightfulData(target) {
     var nData = target.value;
     var jsonName = {"nVNum": "速度值：", 
@@ -55,7 +67,10 @@ function isRightfulData(target) {
     return true;
 }
 
-// 红队球员显示
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：redTeamShow
+// 功   能：将红队的所有球员通过按钮的形式显示出来。
+////////////////////////////////////////////////////////////////////////////////
 function redTeamShow() {
     var objDiv = document.getElementById("red_players");
     // 清空显示
@@ -67,7 +82,10 @@ function redTeamShow() {
     }
 }
 
-// 蓝队球员显示
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：blueTeamShow
+// 功   能：将蓝队的所有球员通过按钮的形式显示出来。
+////////////////////////////////////////////////////////////////////////////////
 function blueTeamShow() {
     var objDiv = document.getElementById("blue_players");
     // 清空显示
@@ -79,7 +97,10 @@ function blueTeamShow() {
     }
 }
 
-// 红队球员属性随机
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：redAddRoll
+// 功   能：红队球员属性随机按钮响应函数
+////////////////////////////////////////////////////////////////////////////////
 function redAddRoll() {
     var nEmptyID = 1;
     var arrPlayerID = [];
@@ -116,7 +137,10 @@ function redAddRoll() {
     
 }
 
-// 红队球员确认增加
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：redAddSure
+// 功   能：红队球员确认增加按钮响应函数
+////////////////////////////////////////////////////////////////////////////////
 function redAddSure() {
     var arrPlayerID = [];
     var nID = parseInt(document.getElementById("red_nID").value);
@@ -129,7 +153,7 @@ function redAddSure() {
         return;
     }
     var nVNum = parseInt(document.getElementById("red_nVNum").value);
-    if (!isRightfulData(document.getElementById("red_nVNum"))) {
+    if (!isRightfulData(document.getElementByI("red_nVNum"))) {
         return;
     }
     var nPower = parseInt(document.getElementById("red_nPower").value);
@@ -168,7 +192,10 @@ function redAddSure() {
 //     alert("未找到ID为：" + nID + "的球员。");
 // }
 
-// 蓝队球员属性随机
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：blueAddRoll
+// 功   能：蓝队球员属性随机按钮响应函数
+////////////////////////////////////////////////////////////////////////////////
 function blueAddRoll() {
     var nEmptyID = 1;
     var arrPlayerID = [];
@@ -205,7 +232,10 @@ function blueAddRoll() {
     
 }
 
-// 蓝队球员确认增加
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：blueAddSure
+// 功   能：蓝队球员确认增加按钮响应函数
+////////////////////////////////////////////////////////////////////////////////
 function blueAddSure() {
     var arrPlayerID = [];
     var nID = parseInt(document.getElementById("blue_nID").value);
@@ -258,7 +288,14 @@ function blueAddSure() {
 //     alert("未找到ID为：" + nID + "的球员。");
 // }
 
-// 显示介绍项
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：showBecareful
+// 功   能：鼠标移入介绍区消息响应函数，弹出介绍框，并且介绍对应属性作用，以及预计能力指标。
+// 参   数：DOM Element : target 为获取介绍区位置
+//         string : strName
+//         string : strData1
+//         string : strData2
+////////////////////////////////////////////////////////////////////////////////
 function showBecareful(target, strName, strData1, strData2) {
     var obj = document.getElementById("frame_becareful");
     // 用于显示介绍框
@@ -274,7 +311,10 @@ function showBecareful(target, strName, strData1, strData2) {
 
 }
 
-// 隐藏介绍项
+////////////////////////////////////////////////////////////////////////////////
+// 函   数：hideBecareful
+// 功   能：隐藏介绍框
+////////////////////////////////////////////////////////////////////////////////
 function hideBecareful() {
     var obj = document.getElementById("frame_becareful");
     // 用于显示介绍框
