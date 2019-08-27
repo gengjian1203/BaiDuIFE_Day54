@@ -4,8 +4,8 @@
 ### 项目展示
 展示链接 [[点击进入]](https://gengjian1203.github.io/BaiDuIFE_Day54/)  
 预览图如下：
-![Result](readme/result1.png "作品展示Day54")
-
+![Result](https://raw.githubusercontent.com/gengjian1203/BaiDuIFE_Day54/master/readme/result1.png "作品展示Day54")
+  
 ### 项目需求  
 通过完成足球小将游戏的练习，来强化对于 JavaScript 的熟悉。  
 持续练习如何对于问题进行抽象，应用面向对象或者各种设计模式进行问题的解决。 
