@@ -183,7 +183,6 @@ button {
     height: calc(100% - 30px);
     overflow: scroll;
     text-align: left;
-    /* font-size: 0.8em; */
     font-family: 'Courier New', Courier, monospace;
 
     margin: auto auto;

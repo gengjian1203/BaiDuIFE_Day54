@@ -14,7 +14,7 @@ window.onload = function() {
     // 绘制足球场
     fbField.show();
 
-    // 绘制足球
+    // 绘制足球 
     Football.getInstance().setPosition(Global.getInstance().getWidth() / 2, Global.getInstance().getHeight() / 2);
     Football.getInstance().show();
 
