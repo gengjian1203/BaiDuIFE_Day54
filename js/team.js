@@ -153,7 +153,7 @@ function redAddSure() {
         return;
     }
     var nVNum = parseInt(document.getElementById("red_nVNum").value);
-    if (!isRightfulData(document.getElementById("red_nVNum"))) {
+    if (!isRightfulData(document.getElementByI("red_nVNum"))) {
         return;
     }
     var nPower = parseInt(document.getElementById("red_nPower").value);
