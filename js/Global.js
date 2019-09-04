@@ -206,6 +206,21 @@ var Global = function() {
         }
     }
 
+    // 全部队员重置位置
+    this.resetAllPlayers = function () {
+        // this.stopAllPlayers();
+        for (var index in g_arrRedPlayer) {
+            g_arrRedPlayer[index].stopMust();
+            g_arrRedPlayer[index].setPositionX(m_nWidth * m_arrAdmissionX[0][0] + Math.floor(Math.random() * (m_nWidth * m_arrAdmissionX[0][1])));
+            g_arrRedPlayer[index].setPositionY(m_nHeight * m_arrAdmissionY[0][0] + Math.floor(Math.random() * (m_nHeight * m_arrAdmissionY[0][1])));          
+        }
+        for (var index in g_arrBluePlayer) {
+            g_arrBluePlayer[index].stopMust();
+            g_arrBluePlayer[index].setPositionX(m_nWidth * m_arrAdmissionX[1][0] + Math.floor(Math.random() * (m_nWidth * m_arrAdmissionX[1][1])));
+            g_arrBluePlayer[index].setPositionY(m_nHeight * m_arrAdmissionY[1][0] + Math.floor(Math.random() * (m_nHeight * m_arrAdmissionY[1][1])));
+        }
+    }
+
     // 右下角日志系统
     this.MyLog = function(strLog) {
         var div = document.getElementById("log_text");

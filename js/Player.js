@@ -42,7 +42,7 @@ function Player(nTeam, arrAttribute) {
     var clrCircle = "white";
     var clrFill = m_global.getTeamColor()[nTeam];
     var clrText = "white";
-    var styleText = "13px bold 黑体";
+    var styleText = "10px bold 黑体";
     var bSignCircle = false;
     // 运动员跑步状态
     var bGo = false;
@@ -101,6 +101,18 @@ function Player(nTeam, arrAttribute) {
     ////////////////////////////////////////////////////////////////////////////////
     this.getPositionY = function() {
         return nSetY;
+    }
+
+    // 设置球员的位置X
+    this.setPositionX = function(nX) {
+        x = nX;
+        nSetX = Global.getInstance().getStartX() + x;
+    }
+
+    // 设置球员的位置Y
+    this.setPositionY = function(nY) {
+        y = nY;
+        nSetY = Global.getInstance().getStartY() + y;
     }
 
     ////////////////////////////////////////////////////////////////////////////////

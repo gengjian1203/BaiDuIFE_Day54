@@ -104,10 +104,12 @@ function Football () {
             (this.getPositionY() <= global.getStartY() + (global.getHeight() / 2) + (3.66 * global.getScale()))) {
             global.MyLog("红队进球，红队分数加1，裁判将足球重新置于球场中央。");
             // 所有队员、足球停止
-            this.setPosition(global.getWidth() / 2 + Math.pow(-1, Math.floor(Math.random() * 10)) * 2.64 * global.getScale(), 
-                             global.getHeight() / 2 + Math.pow(-1, Math.floor(Math.random() * 10)) * 2.64 * global.getScale());
+            // this.setPosition(global.getWidth() / 2 + Math.pow(-1, Math.floor(Math.random() * 10)) * 2.64 * global.getScale(), 
+            //                  global.getHeight() / 2 + Math.pow(-1, Math.floor(Math.random() * 10)) * 2.64 * global.getScale());
+            this.setPosition(global.getWidth() / 2, global.getHeight() / 2);
             this.stop();
-            global.stopAllPlayers();
+            // global.stopAllPlayers();
+            global.resetAllPlayers();
             
             // 更新分数
             global.addRedScore();
@@ -134,10 +136,13 @@ function Football () {
             (this.getPositionY() <= global.getStartY() + (global.getHeight() / 2) + (3.66 * global.getScale()))) {
             global.MyLog("蓝队进球，蓝队分数加1，裁判将足球重新置于球场中央。");
             // 所有队员、足球停止
-            this.setPosition(global.getWidth() / 2 + Math.pow(-1, Math.floor(Math.random() * 10)) * 2.64 * global.getScale(), 
-            global.getHeight() / 2 + Math.pow(-1, Math.floor(Math.random() * 10)) * 2.64 * global.getScale());
+            // this.setPosition(global.getWidth() / 2 + Math.pow(-1, Math.floor(Math.random() * 10)) * 2.64 * global.getScale(), 
+            //                  global.getHeight() / 2 + Math.pow(-1, Math.floor(Math.random() * 10)) * 2.64 * global.getScale());
+            this.setPosition(global.getWidth() / 2, global.getHeight() / 2);
             this.stop();
-            global.stopAllPlayers();
+            // global.stopAllPlayers();
+            global.resetAllPlayers();
+
 
             // 更新分数
             global.addBlueScore();
